@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 import TopNavigation from "@/components/TopNavigation";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
   title: "@Dynamic Blog",
@@ -16,6 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Toaster />
         <TopNavigation />
         {children}
       </body>
