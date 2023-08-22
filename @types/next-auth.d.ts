@@ -4,7 +4,7 @@ import { ObjectId } from "mongoose";
 
 declare module "next-auth" {
   interface User {
-    _id: number;
+    _id: string;
   }
   
   // interface Session {
