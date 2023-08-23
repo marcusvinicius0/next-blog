@@ -1,10 +1,11 @@
 "use client";
 import { useState, FormEventHandler } from "react";
 import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 import { LoginInputs } from "@/@types/user/input";
+import { FcGoogle } from "react-icons/fc";
 
 export default function Login({}: LoginInputs) {
   const [email, setEmail] = useState("");
@@ -12,6 +13,8 @@ export default function Login({}: LoginInputs) {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (
     e: React.FormEvent
@@ -30,7 +33,7 @@ export default function Login({}: LoginInputs) {
         toast.error(result!.error);
       } else {
         toast.success("Login successful");
-        router.push("/");
+        router.push(callbackUrl);
       }
     } catch (err) {
       setLoading(false);
@@ -67,13 +70,18 @@ export default function Login({}: LoginInputs) {
           <button
             type="submit"
             disabled={!email || !password}
-            className={`bg-blue-500 text-white rounded-md p-1 max-w-lg ${
+            className={`bg-blue-500 text-white rounded-md p-1 max-w-lg h-[40px] ${
               !email || !password ? "cursor-not-allowed" : "cursor-pointer"
             }`}
           >
-            Submit
+            {loading ? "Please wait..." : "Submit"}
           </button>
         </form>
+
+        <button className="bg-white p-1 text-black border mx-auto flex items-center gap-2 h-[40px] w-48 font-medium hover:bg-slate-50/80" onClick={() => signIn("google", { callbackUrl })}>
+          <FcGoogle size={20} />
+          Sign in with Google
+        </button>
       </div>
     </div>
   );

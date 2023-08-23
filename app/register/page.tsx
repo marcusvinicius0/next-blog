@@ -79,7 +79,7 @@ export default function Register({}: RegisterInputs) {
             className="border-b-2 outline-none"
           />
 
-          <button type="submit" disabled={!name || !email || !password} className={`bg-blue-500 text-white rounded-md p-1 max-w-lg ${!name || !email || !password ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
+          <button type="submit" disabled={!name || !email || !password} className={`bg-blue-500 text-white rounded-md p-1 h-[40px] max-w-lg ${!name || !email || !password ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
             {loading ? "Please wait..." : "Submit"}
           </button>
         </form>
