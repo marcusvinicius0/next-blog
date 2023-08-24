@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnection from "@/utils/dbConnect";
-import User from "@/models/User";
+import User from "@/models/user";
 import bcrypt from "bcrypt";
 
 export async function POST(req: Request, res: Response) {
@@ -22,6 +22,7 @@ export async function POST(req: Request, res: Response) {
       await new User({
         name,
         email,
+        image: '',
         password: await bcrypt.hash(password, 10),
       }).save();
 

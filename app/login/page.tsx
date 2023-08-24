@@ -2,7 +2,7 @@
 import { useState, FormEventHandler } from "react";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 import { LoginInputs } from "@/@types/user/input";
 import { FcGoogle } from "react-icons/fc";
@@ -43,8 +43,8 @@ export default function Login({}: LoginInputs) {
 
   return (
     <div>
-      <div className="bg-white p-2 space-y-10 shadow-md w-full">
-        <h2 className="text-2xl">Login</h2>
+      <div className="bg-[#202020] p-2 space-y-10 shadow-md w-full">
+        <h2 className="text-2xl text-white">Login</h2>
 
         <form
           action=""
@@ -56,7 +56,7 @@ export default function Login({}: LoginInputs) {
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b-2 outline-none"
+            className="border-b-2 outline-none bg-transparent text-white pl-1"
           />
 
           <input
@@ -64,7 +64,7 @@ export default function Login({}: LoginInputs) {
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-b-2 outline-none"
+            className="border-b-2 outline-none bg-transparent text-white pl-1"
           />
 
           <button
@@ -78,7 +78,10 @@ export default function Login({}: LoginInputs) {
           </button>
         </form>
 
-        <button className="bg-white p-1 text-black border mx-auto flex items-center gap-2 h-[40px] w-48 font-medium hover:bg-slate-50/80" onClick={() => signIn("google", { callbackUrl })}>
+        <button
+          className="bg-[#202020] p-1 text-white border mx-auto flex items-center gap-2 h-[40px] w-48 font-medium hover:bg-transparent/80"
+          onClick={() => signIn("google", { callbackUrl })}
+        >
           <FcGoogle size={20} />
           Sign in with Google
         </button>

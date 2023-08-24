@@ -50,8 +50,8 @@ export default function Register({}: RegisterInputs) {
 
   return (
     <div className="">
-      <div className="bg-white p-2 space-y-10 shadow-md w-full">
-        <h2 className="text-2xl">Register</h2>
+      <div className="bg-[#202020] p-2 space-y-10 shadow-md w-full">
+        <h2 className="text-2xl text-white">Register</h2>
         <form
           action=""
           onSubmit={handleSubmit}
@@ -62,21 +62,21 @@ export default function Register({}: RegisterInputs) {
             value={name}
             placeholder="Type your name"
             onChange={(e) => setName(e.target.value)}
-            className="border-b-2 outline-none"
+            className="border-b-2 outline-none bg-transparent text-white pl-1"
           />
           <input
             type="email"
             value={email}
             placeholder="Your best email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b-2 outline-none"
+            className="border-b-2 outline-none bg-transparent text-white pl-1"
           />
           <input
             type="password"
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-b-2 outline-none"
+            className="border-b-2 outline-none bg-transparent text-white pl-1"
           />
 
           <button type="submit" disabled={!name || !email || !password} className={`bg-blue-500 text-white rounded-md p-1 h-[40px] max-w-lg ${!name || !email || !password ? 'cursor-not-allowed' : 'cursor-pointer'}`}>
