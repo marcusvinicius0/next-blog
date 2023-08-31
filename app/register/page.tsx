@@ -50,7 +50,7 @@ export default function Register({}: RegisterInputs) {
 
   return (
     <div className="">
-      <div className="bg-[#202020] p-2 space-y-10 shadow-md w-full">
+      <div className="p-2 space-y-10 shadow-md w-full">
         <h2 className="text-2xl text-white">Register</h2>
         <form
           action=""
