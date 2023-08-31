@@ -43,7 +43,7 @@ export default function Login({}: LoginInputs) {
 
   return (
     <div>
-      <div className="bg-[#202020] p-2 space-y-10 shadow-md w-full">
+      <div className="p-2 space-y-10 shadow-md w-full">
         <h2 className="text-2xl text-white">Login</h2>
 
         <form
@@ -56,7 +56,7 @@ export default function Login({}: LoginInputs) {
             value={email}
             placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
-            className="border-b-2 outline-none bg-transparent text-white pl-1"
+            className="border-b-2 outline-none bg-transparent pl-1"
           />
 
           <input
@@ -64,7 +64,7 @@ export default function Login({}: LoginInputs) {
             value={password}
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border-b-2 outline-none bg-transparent text-white pl-1"
+            className="border-b-2 outline-none bg-transparent pl-1"
           />
 
           <button
@@ -79,7 +79,7 @@ export default function Login({}: LoginInputs) {
         </form>
 
         <button
-          className="bg-[#202020] p-1 text-white border mx-auto flex items-center gap-2 h-[40px] w-48 font-medium hover:bg-transparent/80"
+          className="p-1 border mx-auto flex items-center gap-2 h-[40px] w-48 font-medium"
           onClick={() => signIn("google", { callbackUrl })}
         >
           <FcGoogle size={20} />

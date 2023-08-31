@@ -21,13 +21,14 @@ export default function TopNavigation({}: Props) {
     >
       <Link
         href="/"
-        className="uppercase tracking-[5px] font-semibold text-white"
+        className="uppercase tracking-[5px] font-semibold"
       >
         Blog
       </Link>
 
       {status === "authenticated" ? (
-        <div className="flex space-x-4">
+        <div className="flex items-center space-x-4">
+          {data.user?.role === "admin" && <p className="font-semibold text-xs uppercase tracking-[5px]">admin</p>}
           <Link
             href={`/dashboard/${
               data?.user?.role === "admin" ? "admin" : "user"
@@ -47,7 +48,7 @@ export default function TopNavigation({}: Props) {
             className="border-b border-blue-400 text-black cursor-pointer hover:bg-slate-50/80 w-8 flex items-center justify-center"
             onClick={() => signOut({ callbackUrl: "/login" })}
           >
-            <PiSignOutBold size={26} className="text-white" />
+            <PiSignOutBold size={26} className="" />
           </a>
         </div>
       ) : (
@@ -57,7 +58,7 @@ export default function TopNavigation({}: Props) {
           </Link>
           <Link
             href="/register"
-            className="border-b border-blue-400 text-white p-1"
+            className="border-b border-blue-400 p-1"
           >
             Register
           </Link>
