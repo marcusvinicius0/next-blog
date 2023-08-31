@@ -6,10 +6,11 @@ import dynamic from "next/dynamic";
 // @ts-ignore
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
+import Image from "next/image";
 
-type Props = {};
+import { Blog } from "@/@types/admin/blog";
 
-export default function AdminBlogCreate({}: Props) {
+export default function AdminBlogCreate() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [category, setCategory] = useState<string>("");
@@ -17,21 +18,63 @@ export default function AdminBlogCreate({}: Props) {
   const [loading, setLoading] = useState<boolean>(false);
 
   const router = useRouter();
-  console.log(router);
-
   const uploadImage = async (e: any) => {
-    //
+    const file = e.target.files[0];
+    if (file) {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", process.env.CLOUDINARY_UPLOAD_PRESET);
+
+      try {
+        const response = await fetch(process.env.CLOUDINARY_URL, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (response.ok) {
+          setLoading(false);
+          const data = await response.json();
+          console.log("res.json", data);
+          setImage(data.secure_url);
+        }
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    }
   };
   // image upload to cloudinary
 
+  //type -> React.FormEvent<HTMLFormElement>
   const handleSubmit = async (e: any) => {
-    //
-  };
-  // submit to create blog api
+    try {
+      const blogData: Blog = { title, content, category, image };
+      const response = await fetch(`${process.env.API}/admin/blog`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(blogData),
+      });
 
-  // return tsx / blog create form
+      if (response.ok) {
+        router.push("/dashboard/admin");
+        toast.success("Blog created successfully");
+      } else {
+        const errorData = await response.json();
+        toast.error(errorData.err);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.error("An error occurred. Please try again.");
+    }
+  };
+
+  // submit to create blog api
   const createBlog = () => {};
 
+  // return tsx / blog create form
   return (
     <div className="mt-5 p-2">
       <div>
@@ -66,13 +109,22 @@ export default function AdminBlogCreate({}: Props) {
             className="border-b-2 outline-none bg-transparent border-b-blue-500"
           />
 
+          {image && (
+            <Image
+              src={image}
+              alt=""
+              width={100}
+              height={100}
+              className="object-contain"
+            />
+          )}
+
           <div className="flex space-x-8">
             <button type="button">
               <label
                 htmlFor="upload-button"
                 className="border cursor-pointer p-2 bg-slate-100/80"
               >
-
                 {loading ? "Uploading..." : "Upload image"}
               </label>
 
@@ -86,9 +138,9 @@ export default function AdminBlogCreate({}: Props) {
             </button>
 
             <button
-              className="border cursor-pointer p-2 bg-slate-100/80"
+              className="border cursor-pointer p-2 bg-slate-100/80 disabled:cursor-not-allowed"
               disabled={loading}
-              onClick={createBlog}
+              onClick={handleSubmit}
             >
               Save
             </button>
