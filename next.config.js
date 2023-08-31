@@ -12,6 +12,9 @@ const nextConfig = {
     CLOUDINARY_UPLOAD_PRESET: config.CLOUDINARY_UPLOAD_PRESET,
     CLOUDINARY_URL: config.CLOUDINARY_URL,
   },
+  images: {
+    domains: ['res.cloudinary.com']
+  }
 }
 
 module.exports = nextConfig

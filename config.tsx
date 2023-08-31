@@ -5,7 +5,7 @@ const GOOGLE_CLIENT_ID="1002545094111-t93cct3kvr7si6i7k0e2ei8tbsd8r2aa.apps.goog
 const GOOGLE_CLIENT_SECRET="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";
 
 const CLOUDINARY_UPLOAD_PRESET="ctw7utrq";
-const CLOUDINARY_URL="https://api.cloudinary.com/v1_1/dmthqoguy/nextblog/uploads";
+const CLOUDINARY_URL="https://api.cloudinary.com/v1_1/dmthqoguy/image/upload";
 
 module.exports = {
   DB_URL,

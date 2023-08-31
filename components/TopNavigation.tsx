@@ -10,9 +10,6 @@ import { PiSignOutBold } from "react-icons/pi";
 export default function TopNavigation({}: Props) {
   const { data, status } = useSession();
 
-  // @ts-ignore
-  console.log("dataaaaa", data?.user?.role);
-
   return (
     <nav
       className={`p-2 shadow-gray-500/50 shadow-md flex items-center mb-3 h-[65px] ${
