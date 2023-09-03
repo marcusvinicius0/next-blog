@@ -10,14 +10,19 @@ import Image from "next/image";
 
 import { Blog } from "@/@types/admin/blog";
 
+import { ImSpinner } from "react-icons/im";
+
 export default function AdminBlogCreate() {
   const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [image, setImage] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false);
+  const [submitLoading, setSubmitLoading] = useState<boolean>(false);
 
   const router = useRouter();
+
   const uploadImage = async (e: any) => {
     const file = e.target.files[0];
     if (file) {
@@ -49,6 +54,7 @@ export default function AdminBlogCreate() {
   //type -> React.FormEvent<HTMLFormElement>
   const handleSubmit = async (e: any) => {
     try {
+      setSubmitLoading(true);
       const blogData: Blog = { title, content, category, image };
       const response = await fetch(`${process.env.API}/admin/blog`, {
         method: "POST",
@@ -59,13 +65,16 @@ export default function AdminBlogCreate() {
       });
 
       if (response.ok) {
+        setSubmitLoading(false);
         router.push("/dashboard/admin");
         toast.success("Blog created successfully");
       } else {
+        setSubmitLoading(false);
         const errorData = await response.json();
         toast.error(errorData.err);
       }
     } catch (err) {
+      setSubmitLoading(false);
       console.log(err);
       toast.error("An error occurred. Please try again.");
     }
@@ -138,11 +147,12 @@ export default function AdminBlogCreate() {
             </button>
 
             <button
-              className="border cursor-pointer p-2 bg-slate-100/80 disabled:cursor-not-allowed"
-              disabled={loading}
+              className="border cursor-pointer p-2 bg-slate-100/80 disabled:cursor-not-allowed min-w-[50.67px] flex justify-center"
+              disabled={submitLoading || !title || !content || !category}
               onClick={handleSubmit}
+              title={`Preencha os campos obrigatórios.`}
             >
-              Save
+              {submitLoading ? <ImSpinner className="animate-spin" /> : "Save"}
             </button>
           </div>
         </div>
