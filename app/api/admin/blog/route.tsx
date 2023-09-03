@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnection from "@/utils/dbConnect";
-import Blog from "@/models/blog";
+import Blog from "@/models/Blog";
 import slugify from "slugify";
 import { getToken } from "next-auth/jwt";
 
