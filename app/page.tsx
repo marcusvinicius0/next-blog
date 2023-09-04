@@ -1,16 +1,13 @@
-import queryString from "query-string";
 import Link from "next/link";
 
-import Image from "next/image";
+import BlogList from "@/components/blogs/BlogList";
 
 async function getBlogs(searchParams: any) {
-  // console.log(searchParams);
   const urlParams = {
     page: searchParams.page || 1,
   };
 
   const searchQuery = new URLSearchParams(urlParams).toString();
-  // console.log("search query: " + searchQuery);
 
   const response = await fetch(`${process.env.API}/blog?${searchQuery}`, {
     method: "GET",
@@ -31,19 +28,19 @@ async function getBlogs(searchParams: any) {
 
 export default async function Home({ searchParams }) {
   const data = await getBlogs(searchParams);
-  // console.log("data in home page => ", data);
+
   const { blogs, currentPage, totalPages } = data;
 
   const hasPreviousPage = currentPage > 1;
   const hasNextPage = currentPage < totalPages;
 
-  console.log(blogs.map((blog) => blog.title));
   return (
-    <div className="max-w-5xl bg-red-50">
-      <h3>Home</h3>
-      <pre>{JSON.stringify(data, null, 4)}</pre>
+    <div className="max-w-5xl p-2">
+      <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
+      <BlogList blogs={blogs} />
+      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
 
-      <div className="">
+      <div className="mt-4">
         <nav className="">
           <ul className="flex flex-row items-center justify-center space-x-6">
             {hasPreviousPage && (
