@@ -63,7 +63,7 @@ export default function BlogCard({ blog }) {
           </span>
           <div className="flex justify-between pt-3">
             <BlogLike blog={blog} />
-            <strong className="text-sm">
+            <strong className="text-xs">
               Posted {dayjs(blog?.createdAt).fromNow()}
             </strong>
           </div>

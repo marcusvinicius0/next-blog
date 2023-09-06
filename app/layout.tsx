@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 
 import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
+import { SearchProvider } from "@/context/search";
 
 // export const metadata: Metadata = { // client components can not have metadata
 //   title: "@Dynamic Blog",
@@ -22,10 +23,12 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <SessionProvider>
-          <Toaster />
-          <TopNavigation />
-          {children}
-          <Footer />
+          <SearchProvider>
+            <Toaster />
+            <TopNavigation />
+            {children}
+            <Footer />
+          </SearchProvider>
         </SessionProvider>
       </body>
     </html>

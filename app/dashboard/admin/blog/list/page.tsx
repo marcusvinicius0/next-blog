@@ -1,4 +1,8 @@
 import Link from "next/link";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+
+dayjs.extend(relativeTime);
 
 async function getBlogs(searchParams: any) {
   const urlParams = {
@@ -37,8 +41,18 @@ export default async function AdminBlogsList({ searchParams }) {
       <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
       {blogs?.map((blog, index) => (
         <div key={blog._id} className="flex flex-col space-y-2 mt-6">
-          <p className="text-1xl font-semibold">{`${index + 1}°`}{" "}{blog.title}</p>
-          <Link href={`/dashboard/admin/blog/update/${blog.slug}`} className="w-16 uppercase text-blue-400 font-semibold hover:text-blue-400/90">Update</Link>
+          <p className="text-1xl font-semibold">
+            {`${index + 1}°`} {blog.title}
+          </p>
+          <div className="flex items-center justify-between">
+            <Link
+              href={`/dashboard/admin/blog/update/${blog.slug}`}
+              className="w-16 uppercase text-blue-400 font-semibold hover:text-blue-400/90"
+            >
+              Update
+            </Link>
+            <p className="text-xs font-semibold">Posted {dayjs(blog.createdAt).fromNow()}</p>
+          </div>
           <hr />
         </div>
       ))}

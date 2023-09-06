@@ -2,13 +2,19 @@
 "use client";
 import Link from "next/link";
 import { useSession, signOut } from "next-auth/react";
-type Props = {};
+import { useSearch } from "@/hooks";
 
 import defaultUserAvatar from "../public/user-img.svg";
+
+import { BiSearchAlt2 } from "react-icons/bi";
 import { PiSignOutBold } from "react-icons/pi";
 
-export default function TopNavigation({}: Props) {
+export default function TopNavigation({}) {
   const { data, status } = useSession();
+
+  // @ts-ignore
+  const { searchQuery, setSearchQuery, fetchSearchResults } = useSearch();
+  // console.log(searchQuery, setSearchQuery, fetchSearchResults);
 
   return (
     <nav
@@ -16,18 +22,38 @@ export default function TopNavigation({}: Props) {
         status === "authenticated" ? "justify-between" : "justify-between"
       }`}
     >
-      <Link
-        href="/"
-        className="uppercase tracking-[5px] font-semibold"
-      >
-        Blog
-      </Link>
+      {status !== "authenticated" && (
+        <Link href="/" className="uppercase tracking-[5px] font-semibold">
+          Blog
+        </Link>
+      )}
+
+      {status === "authenticated" && (
+        <form action="" onSubmit={fetchSearchResults} className="flex">
+          <input
+            type="search"
+            placeholder="Search something..."
+            aria-label="search"
+            onChange={(e) => setSearchQuery(e.target.value)}
+            value={searchQuery}
+            className="w-48 text-sm pt-2 relative border-b border-blue-700/50 font-semibold bg-whitesmoke outline-none"
+          />
+          <button className="absolute top-7 right-32">
+            <BiSearchAlt2 size={16} />
+          </button>
+        </form>
+      )}
 
       {status === "authenticated" ? (
         <div className="flex items-center space-x-4">
-          {data.user?.role === "admin" && <p className="font-semibold text-xs uppercase tracking-[5px]">admin</p>}
+          {/* {data.user?.role === "admin" && (
+            <p className="font-semibold text-xs uppercase tracking-[5px]">
+              admin
+            </p>
+          )} */}
           <Link
             href={`/dashboard/${
+              // @ts-ignore
               data?.user?.role === "admin" ? "admin" : "user"
             }`}
             className="text-white flex items-center space-x-2 md:w-fit"
@@ -53,10 +79,7 @@ export default function TopNavigation({}: Props) {
           <Link href="/login" className="bg-blue-400 text-white p-1">
             Login
           </Link>
-          <Link
-            href="/register"
-            className="border-b border-blue-400 p-1"
-          >
+          <Link href="/register" className="border-b border-blue-400 p-1">
             Register
           </Link>
         </div>
