@@ -3,9 +3,7 @@ import { useState, FormEventHandler } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-import { RegisterInputs } from "@/@types/user/input";
-
-export default function Register({}: RegisterInputs) {
+export default function Register({}) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
