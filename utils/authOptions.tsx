@@ -1,6 +1,6 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
-import User from "@/models/user";
+import User from "../models/user";
 import bcrypt from "bcrypt";
 import dbConnection from "./dbConnect";
 

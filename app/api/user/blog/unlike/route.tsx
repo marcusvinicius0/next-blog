@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnection from "@/utils/dbConnect";
-import Blog from "@/models/Blog";
+import Blog from "../../../../../models/blog";
 import { getToken } from "next-auth/jwt";
 
 export async function PUT(req: any) {
