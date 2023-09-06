@@ -21,6 +21,7 @@ const blogSchema = new mongoose.Schema(
       required: true,
     },
     image: String,
+    link: String,
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

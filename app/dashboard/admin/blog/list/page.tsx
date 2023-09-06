@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-import BlogList from "@/components/blogs/BlogList";
-
 async function getBlogs(searchParams: any) {
   const urlParams = {
     page: searchParams.page || 1,
@@ -26,7 +24,7 @@ async function getBlogs(searchParams: any) {
   return data; // { blogs, currentPage, totalPages }
 }
 
-export default async function Home({ searchParams }) {
+export default async function AdminBlogsList({ searchParams }) {
   const data = await getBlogs(searchParams);
 
   const { blogs, currentPage, totalPages } = data;
@@ -35,11 +33,15 @@ export default async function Home({ searchParams }) {
   const hasNextPage = currentPage < totalPages;
 
   return (
-    <div className="max-w-5xl p-2 mt-6">
+    <div className="max-w-5xl p-2 mt-4">
       <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
-      <BlogList blogs={blogs} />
-      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
-
+      {blogs?.map((blog, index) => (
+        <div key={blog._id} className="flex flex-col space-y-2 mt-6">
+          <p className="text-1xl font-semibold">{`${index + 1}°`}{" "}{blog.title}</p>
+          <Link href={`/dashboard/admin/blog/update/${blog.slug}`} className="w-16 uppercase text-blue-400 font-semibold hover:text-blue-400/90">Update</Link>
+          <hr />
+        </div>
+      ))}
       <div className="mt-4">
         <nav className="">
           <ul className="flex flex-row items-center justify-center space-x-6">

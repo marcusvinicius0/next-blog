@@ -44,7 +44,7 @@ export default function Login({}: LoginInputs) {
   return (
     <div>
       <div className="p-2 space-y-10 shadow-md w-full">
-        <h2 className="text-2xl text-white">Login</h2>
+        <h2 className="text-2xl">Login</h2>
 
         <form
           action=""

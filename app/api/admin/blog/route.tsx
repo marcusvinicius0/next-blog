@@ -9,7 +9,7 @@ export async function POST(req: Request, res: Response) {
   await dbConnection();
 
   try {
-    const { title, content, category, image } = _req;
+    const { title, content, category, image, link } = _req;
     switch (true) {
       case !title:
         return NextResponse.json(
@@ -49,6 +49,7 @@ export async function POST(req: Request, res: Response) {
         content,
         category,
         image: image ? image : null,
+        link: link ? link : "",
         //@ts-ignore
         postedBy: token.user._id,
         slug: slugify(title),

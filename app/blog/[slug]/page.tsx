@@ -16,10 +16,10 @@ async function getBlog(slug: string) {
 }
 
 export default async function BlogViewPage({ params }) {
-  console.log("params: " + params);
+  console.log("params: " + params.slug);
   const blog = await getBlog(params.slug);
   return (
-    <main>
+    <main className="p-2">
       {/* <pre>{JSON.stringify(blog, null, 4)}</pre> */}
 
       <div className="w-full mt-10 bg-slate-50 shadow-sm">
@@ -48,13 +48,24 @@ export default async function BlogViewPage({ params }) {
 
             <footer className="flex flex-col space-y-2 mt-5">
               <hr />
-              <small>
+              <span className="text-sm">
                 <strong>Category:</strong> {blog?.category}
-              </small>
-              <small>
+              </span>
+              <span className="text-sm pt-1">
                 <strong>Author:</strong> {blog?.postedBy?.name || "Admin"}
-              </small>
-              <div className="flex justify-between pt-3">
+              </span>
+              <span className="text-sm pt-1">
+                <b>Source:</b>{" "}
+                <a
+                  href={blog?.link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                  className="text-blue-400"
+                >
+                  {blog?.link}
+                </a>
+              </span>
+              <div className="flex justify-between pt-3 text-sm">
                 <p>❤️ {blog?.likes?.length} likes</p>
                 <strong className="text-sm">
                   Posted {dayjs(blog?.createdAt).fromNow()}

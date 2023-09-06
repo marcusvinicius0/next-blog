@@ -1,10 +1,11 @@
 "use client";
 import "./globals.css";
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 
 import TopNavigation from "@/components/TopNavigation";
-import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer";
 
+import { Toaster } from "react-hot-toast";
 import { SessionProvider } from "next-auth/react";
 
 // export const metadata: Metadata = { // client components can not have metadata
@@ -24,6 +25,7 @@ export default function RootLayout({
           <Toaster />
           <TopNavigation />
           {children}
+          <Footer />
         </SessionProvider>
       </body>
     </html>
