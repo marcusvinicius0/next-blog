@@ -4,10 +4,9 @@ import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 
-import { LoginInputs } from "@/@types/user/input";
 import { FcGoogle } from "react-icons/fc";
 
-export default function Login({}: LoginInputs) {
+export default function Login({}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
