@@ -42,7 +42,7 @@ export default function TopNavigation({}: Props) {
             />
           </Link>
           <a
-            className="border-b border-blue-400 text-black cursor-pointer hover:bg-slate-50/80 w-8 flex items-center justify-center"
+            className="text-black cursor-pointer hover:bg-slate-50/80 w-8 flex items-center justify-center"
             onClick={() => signOut({ callbackUrl: "/login" })}
           >
             <PiSignOutBold size={26} className="" />

@@ -5,6 +5,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 dayjs.extend(relativeTime);
 
+import BlogLike from "./BlogLike";
+
 export default function BlogCard({ blog }) {
   return (
     <div className="w-full mt-10 bg-slate-50 shadow-sm">
@@ -23,33 +25,49 @@ export default function BlogCard({ blog }) {
           <Link href={`/blog/${blog.slug}`}>{blog.title}</Link>
         </h5>
         <hr className="mt-1" />
-        <div className="pt-4">
-          <div
-            className="bg-black-100/40"
+        <div className="pt-4 flex flex-col">
+          {/* <div
+            className="bg-none text-ellipsis"
             dangerouslySetInnerHTML={{
               __html:
-                blog.content.length > 160
-                  ? `${blog.content.substring(0, 160)}...`
-                  : blog.content,
+                // blog.content.length > 260
+                // ? `${blog.content.substring(0, 160)}...` : ''
+                blog.content,
             }}
-          ></div>
+          ></div> */}
+          <p
+            className="text-ellipsis overflow-hidden whitespace-pre-wrap max-h-48"
+            dangerouslySetInnerHTML={{
+              __html: blog?.content,
+            }}
+          ></p>
+          {blog?.content.length >= 245 && <span className="font-bold">...</span>}
         </div>
-        <footer className="flex flex-col space-y-2 mt-5">
+        <div className="flex flex-col space-y-2 mt-5">
           <hr />
 
-          <small>
-            <strong>Category:</strong> {blog?.category}
-          </small>
-          <small>
-            <strong>Author:</strong> {blog?.postedBy?.name || "Admin"}
-          </small>
+          <span className="font-semibold">Category: {blog?.category}</span>
+          <span className="font-semibold">
+            Author: {blog?.postedBy?.name || "Admin"}
+          </span>
+          <span>
+            <b>Source:</b>{" "}
+            <a
+              href={blog?.link}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-blue-400"
+            >
+              {blog?.link}
+            </a>
+          </span>
           <div className="flex justify-between pt-3">
-            <p>❤️ {blog?.likes?.length} likes</p>
+            <BlogLike blog={blog} />
             <strong className="text-sm">
               Posted {dayjs(blog?.createdAt).fromNow()}
             </strong>
           </div>
-        </footer>
+        </div>
       </div>
     </div>
   );
