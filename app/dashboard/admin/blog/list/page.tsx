@@ -37,12 +37,12 @@ export default async function AdminBlogsList({ searchParams }) {
   const hasNextPage = currentPage < totalPages;
 
   return (
-    <div className="max-w-5xl p-2 mt-4">
+    <div className="max-w-[1024px] mx-auto p-2 mt-4">
       <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
       {blogs?.map((blog, index) => (
         <div key={blog._id} className="flex flex-col space-y-2 mt-6">
-          <p className="text-1xl font-semibold">
-            {`${index + 1}°`} {blog.title}
+          <p className="text-1xl font-semibold max-w-[85%]">
+            <span className="text-lg">{`${index + 1}°`}</span> {blog.title}
           </p>
           <div className="flex items-center justify-between">
             <Link

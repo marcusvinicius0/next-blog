@@ -35,7 +35,7 @@ export default async function Home({ searchParams }) {
   const hasNextPage = currentPage < totalPages;
 
   return (
-    <div className="max-w-5xl p-2">
+    <div className="p-2">
       <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
       <BlogList blogs={blogs} />
       {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}

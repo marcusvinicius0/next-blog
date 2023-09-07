@@ -19,10 +19,10 @@ export default async function BlogViewPage({ params }) {
   console.log("params: " + params.slug);
   const blog = await getBlog(params.slug);
   return (
-    <main className="p-2">
+    <main>
       {/* <pre>{JSON.stringify(blog, null, 4)}</pre> */}
 
-      <div className="w-full mt-10 bg-slate-50 shadow-sm">
+      <div className="max-w-[659px] mx-auto mt-10 shadow-sm p-2">
         <div>
           <Image
             src={blog?.image || "/mountains.png"}

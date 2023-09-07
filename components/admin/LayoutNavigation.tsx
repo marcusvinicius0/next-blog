@@ -11,7 +11,6 @@ export default function AdminNavigationLayout({}) {
       setTabNavListBlog(false);
     }
     setTabNavCreateBlog(!tabNavCreateBlog);
-    console.log(tabNavCreateBlog);
   };
 
   const handleTabNavList = () => {
@@ -19,11 +18,13 @@ export default function AdminNavigationLayout({}) {
       setTabNavCreateBlog(false);
     }
     setTabNavListBlog(!tabNavListBlog);
-    console.log(tabNavListBlog);
   };
 
   return (
     <nav className="bg-white flex justify-center items-center space-x-4 h-10">
+      <Link href="/" className="p-2 font-semibold">
+        Home
+      </Link>
       <Link
         onClick={() => handleTabNavCreate()}
         href="/dashboard/admin/blog/create"

@@ -41,8 +41,8 @@ export default function Login({}) {
   };
 
   return (
-    <div>
-      <div className="p-2 space-y-10 shadow-md w-full">
+    <div className="max-w-[425px] mx-auto md:max-w-[475px] mt-10">
+      <div className="p-3 space-y-10 shadow-md w-full">
         <h2 className="text-2xl">Login</h2>
 
         <form

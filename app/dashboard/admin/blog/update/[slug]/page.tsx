@@ -136,7 +136,7 @@ export default function AdminBlogUpdate({ params }) {
   };
 
   return (
-    <div className="mt-5 p-2">
+    <div className="mt-5 p-2 max-w-[515px] mx-auto">
       <div>
         <h3 className="text-lg">Edit blog</h3>
         <div className="flex flex-col mt-6 space-y-6">

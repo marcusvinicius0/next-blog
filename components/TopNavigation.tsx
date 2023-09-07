@@ -29,19 +29,27 @@ export default function TopNavigation({}) {
       )}
 
       {status === "authenticated" && (
-        <form action="" onSubmit={fetchSearchResults} className="flex">
-          <input
-            type="search"
-            placeholder="Search something..."
-            aria-label="search"
-            onChange={(e) => setSearchQuery(e.target.value)}
-            value={searchQuery}
-            className="w-48 text-sm pt-2 relative border-b border-blue-700/50 font-semibold bg-whitesmoke outline-none"
-          />
-          <button className="absolute top-7 right-32">
-            <BiSearchAlt2 size={16} />
-          </button>
-        </form>
+        <article className="w-7/12 max-w-[293px]">
+          <form
+            action=""
+            onSubmit={fetchSearchResults}
+            className="flex relative"
+          >
+            <input
+              type="search"
+              placeholder="Search something..."
+              aria-label="search"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
+              className="text-sm pt-2 border-b border-blue-700/50 font-semibold bg-whitesmoke outline-none w-full"
+            />
+            <span className="absolute right-0 top-2">
+              <button className="">
+                <BiSearchAlt2 size={16} />
+              </button>
+            </span>
+          </form>
+        </article>
       )}
 
       {status === "authenticated" ? (

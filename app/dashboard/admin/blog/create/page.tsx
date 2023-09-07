@@ -82,12 +82,8 @@ export default function AdminBlogCreate() {
     }
   };
 
-  // submit to create blog api
-  const createBlog = () => {};
-
-  // return tsx / blog create form
   return (
-    <div className="mt-5 p-2">
+    <div className="mt-5 p-2 max-w-[515px] mx-auto">
       <div>
         <h3 className="text-lg">Create blog</h3>
         <div className="flex flex-col mt-6 space-y-6">
