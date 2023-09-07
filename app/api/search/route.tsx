@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import Blog from "../../../models/blog";
+import Blog from "../../../models/Blog";
 import dbConnection from "@/utils/dbConnect";
 import queryString from "query-string";
 

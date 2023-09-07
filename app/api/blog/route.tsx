@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import dbConnection from "../../../utils/dbConnect";
-import Blog from "../../../models/blog";
+import Blog from "../../../models/Blog";
 import queryString from "query-string";
 
 export async function GET(req: Request) {

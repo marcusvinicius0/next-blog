@@ -1,5 +1,5 @@
 import NextAuth, { DefaultSession } from "next-auth";
-import { User } from "../models/user";
+import { User } from "../models/User";
 import { ObjectId } from "mongoose";
 
 declare module "next-auth" {
