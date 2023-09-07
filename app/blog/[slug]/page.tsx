@@ -42,7 +42,7 @@ export default async function BlogViewPage({ params }) {
             <div
               className=""
               dangerouslySetInnerHTML={{
-                __html: blog.content,
+                __html: blog?.content,
               }}
             ></div>
 
