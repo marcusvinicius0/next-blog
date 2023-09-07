@@ -1,34 +1,76 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextBlog 💻
 
-## Getting Started
+<img src="public/nextblog-mock1.png" />
+<img src="public/nextblog-mock2.png" />
+<img src="public/nextblog-mock3.png" />
 
-First, run the development server:
+>  A modern and responsive Fullstack Blog made with ❤️!
+
+Check the app: <a href="https://nextblog-rho-sooty.vercel.app/" target="_blank" rel="noopener noreferrer">https://nextblog-rho-sooty.vercel.app/</a><br>
+
+## Explanation
+
+**Next Blog** is a Fullstack NextJS 13 app where you register and signin, see and search for blogs and save them. As admin you are able to create/edit/delete blogs.
+
+## 📱 Mobile First Methodology
+
+This app was designed and developed using **Mobile First Methodology**, that involves designing a site starting with the mobile version, which is then adapted to larger screens.
+
+## 🔐 Google Authentication
+
+You can also signin in the app with google sync using your google account. We'll save the necessary data so you can explore the app in our database.
+
+
+## 🔧 Versioning
+- [x] Version 1.0:
+
+## :rocket: Technologies ##
+
+The following technologies was used on this project:
+
+- [NextJs](https://nextjs.org/)
+- [MongoDB](https://www.mongodb.com/docs/)
+- [Cloudinary](https://cloudinary.com/)
+- [Tailwindcss](https://tailwindcss.com/)
+- [ReactJs](https://pt-br.reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+
+## :closed_book: Requirements ##
+
+Before begin :checkered_flag:, you have to got [Git](https://git-scm.com) and [Node](https://nodejs.org/en/) installed.
+
+## :checkered_flag: Starting ##
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# Clone this project
+$ git clone https://github.com/jguilhermesl/devs-social-network
+# Access
+$ cd devs-social-network
+# Install dependencies
+$ yarn or npm 
+# Run the project
+$ yarn start or npm start 
+# The server will initialize in the <http://localhost:3000>
 ```
+## 🤝 Colaborators
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Thanks to the following people who contributed to this project:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://github.com/marcusvinicius0.png" width="160px;" alt="Marcus Begheli's picture"/><br>
+          <sub>
+            <b>Marcus Begheli</b>
+          </sub>
+        </a>
+      </td>
+  </tr>
+</table>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📝 License
 
-## Learn More
+This project is under license. See the file [LICENSE](LICENSE.md) to get more details.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<a href="#top">Get back to top</a>

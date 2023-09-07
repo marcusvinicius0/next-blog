@@ -1,20 +1,97 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
-
 import Link from "next/link";
+import { useSession, signOut } from "next-auth/react";
+import { useSearch } from "@/hooks";
 
-type Props = {};
+import defaultUserAvatar from "../public/user-img.svg";
 
-export default function TopNavigation({}: Props) {
-  return <nav className="p-2 shadow-md flex justify-between items-center mb-3 h-[55px]">
-    <Link href="/" className="uppercase tracking-[5px] font-semibold">Blog</Link>
+import { BiSearchAlt2 } from "react-icons/bi";
+import { PiSignOutBold } from "react-icons/pi";
 
-    <div className="flex space-x-6">
-      <Link href="/login" className="bg-blue-400 text-white p-1">
-        Login
-      </Link>
-      <Link href="/register" className="border-b border-blue-400 text-black p-1">
-        Register
-      </Link>
-    </div>
-  </nav>;
+export default function TopNavigation({}) {
+  const { data, status } = useSession();
+
+  // @ts-ignore
+  const { searchQuery, setSearchQuery, fetchSearchResults } = useSearch();
+  // console.log(searchQuery, setSearchQuery, fetchSearchResults);
+
+  return (
+    <nav
+      className={`p-2 shadow-gray-500/50 shadow-md flex items-center mb-3 h-[65px] ${
+        status === "authenticated" ? "justify-between" : "justify-between"
+      }`}
+    >
+      {status !== "authenticated" && (
+        <Link href="/" className="uppercase tracking-[5px] font-semibold">
+          Blog
+        </Link>
+      )}
+
+      {status === "authenticated" && (
+        <article className="w-7/12 max-w-[293px]">
+          <form
+            action=""
+            onSubmit={fetchSearchResults}
+            className="flex relative"
+          >
+            <input
+              type="search"
+              placeholder="Search something..."
+              aria-label="search"
+              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchQuery}
+              className="text-sm pt-2 border-b border-blue-700/50 font-semibold bg-whitesmoke outline-none w-full"
+            />
+            <span className="absolute right-0 top-2">
+              <button className="">
+                <BiSearchAlt2 size={16} />
+              </button>
+            </span>
+          </form>
+        </article>
+      )}
+
+      {status === "authenticated" ? (
+        <div className="flex items-center space-x-4">
+          {/* {data.user?.role === "admin" && (
+            <p className="font-semibold text-xs uppercase tracking-[5px]">
+              admin
+            </p>
+          )} */}
+          <Link
+            href={`/dashboard/${
+              // @ts-ignore
+              data?.user?.role === "admin" ? "admin" : "user"
+            }`}
+            className="text-white flex items-center space-x-2 md:w-fit"
+          >
+            <img
+              className="rounded-full w-[42px] h-[42px] 
+                "
+              src={
+                !data?.user?.image ? defaultUserAvatar.src : data?.user?.image
+              }
+              alt="User avatar"
+            />
+          </Link>
+          <a
+            className="text-black cursor-pointer hover:bg-slate-50/80 w-8 flex items-center justify-center"
+            onClick={() => signOut({ callbackUrl: "/login" })}
+          >
+            <PiSignOutBold size={26} className="" />
+          </a>
+        </div>
+      ) : (
+        <div className="flex space-x-6">
+          <Link href="/login" className="bg-blue-400 text-white p-1">
+            Login
+          </Link>
+          <Link href="/register" className="border-b border-blue-400 p-1">
+            Register
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
 }

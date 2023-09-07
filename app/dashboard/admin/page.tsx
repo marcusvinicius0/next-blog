@@ -35,11 +35,11 @@ export default async function Home({ searchParams }) {
   const hasNextPage = currentPage < totalPages;
 
   return (
-    <div className="p-2">
+    <div className="p-2 mt-6">
       <h3 className="text-2xl text-gray-800">Latest Blogs</h3>
       <BlogList blogs={blogs} />
-      {/* <pre>{JSON.stringify(data, null, 4)}</pre> */}
-
+      {/* <pre>{JSON.stringify(data, null, 4)}</pre>  */} { /* preview the data */}
+      
       <div className="mt-4">
         <nav className="">
           <ul className="flex flex-row items-center justify-center space-x-6">
