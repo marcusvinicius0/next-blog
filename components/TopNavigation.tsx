@@ -14,7 +14,6 @@ export default function TopNavigation({}) {
 
   // @ts-ignore
   const { searchQuery, setSearchQuery, fetchSearchResults } = useSearch();
-  // console.log(searchQuery, setSearchQuery, fetchSearchResults);
 
   return (
     <nav

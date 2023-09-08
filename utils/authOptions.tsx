@@ -47,7 +47,6 @@ export const authOptions = {
     // save user if they login via social networks
     async signIn({ user }) {
       dbConnection();
-      console.log(user);
 
       const { email } = user;
 
@@ -64,7 +63,6 @@ export const authOptions = {
     },
     // add additional user info to the session (jwt, session)
     jwt: async ({ token, user }) => {
-      // console.log("jwt callback", token, user);
       const userByEmail = await User.findOne({ email: token.email });
       userByEmail.password = undefined;
       token.user = userByEmail;
@@ -72,7 +70,6 @@ export const authOptions = {
       return token;
     },
     session: async ({ session, token }) => {
-      // console.log("session callback", session, token);
       session.user = token.user;
       return session;
     }

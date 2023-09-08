@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { convert } from "html-to-text";
 
 dayjs.extend(relativeTime);
 
@@ -16,8 +17,8 @@ async function getBlog(slug: string) {
 }
 
 export default async function BlogViewPage({ params }) {
-  console.log("params: " + params.slug);
   const blog = await getBlog(params.slug);
+
   return (
     <main>
       {/* <pre>{JSON.stringify(blog, null, 4)}</pre> */}
@@ -40,11 +41,11 @@ export default async function BlogViewPage({ params }) {
           <hr />
           <div className="pt-4">
             <div
-              className=""
               dangerouslySetInnerHTML={{
                 __html: blog?.content,
               }}
-            ></div>
+            />
+            {/* <div>{convert(blog?.content)}</div> */}
 
             <footer className="flex flex-col space-y-2 mt-5">
               <hr />
