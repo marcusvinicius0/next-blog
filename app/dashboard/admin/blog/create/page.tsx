@@ -42,7 +42,6 @@ export default function AdminBlogCreate() {
         if (response.ok) {
           setLoading(false);
           const data = await response.json();
-          console.log("res.json", data);
           setImage(data.secure_url);
         }
       } catch (err) {

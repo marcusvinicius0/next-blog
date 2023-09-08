@@ -20,7 +20,6 @@ async function getBlogs(searchParams: any) {
   });
 
   if (!response.ok) {
-    console.log("Failed to fetch blogs => " + response);
     throw new Error("Failed to fetch blogs");
   }
 

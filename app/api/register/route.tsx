@@ -3,9 +3,8 @@ import dbConnection from "@/utils/dbConnect";
 import User from "../../../models/User";
 import bcrypt from "bcrypt";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const _req: any = await req.json(); //req.body - only way to access req.body
-  // console.log(_req);
 
   await dbConnection();
 

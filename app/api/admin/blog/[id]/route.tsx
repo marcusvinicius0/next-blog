@@ -5,7 +5,6 @@ import Blog from "../../../../../models/Blog";
 export async function PUT(req: any, context) {
   await dbConnection();
   const _req = await req.json();
-  console.log("context params => ", context.params);
 
   try {
     const updatedBlog = await Blog.findByIdAndUpdate(
